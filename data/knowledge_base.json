@@ -1,0 +1,60 @@
+{
+  "protocol": "NAVI-WIRED-OMEGA-DATABASE",
+  "last_sync": "2024-05-10",
+  "security_categories": {
+    "web_servers": [
+      { "name": "Apache", "versions": ["2.0.x", "2.2.x", "2.4.1", "2.4.49", "2.4.50", "2.4.51"], "risk": "Critical", "cve": ["CVE-2021-41773", "CVE-2021-42013"], "desc": "Path Traversal e Remote Code Execution." },
+      { "name": "Nginx", "versions": ["0.5.6", "1.13.2", "1.18.0", "1.20.1"], "risk": "High", "desc": "Vulnerabilidades de integer overflow e escape de sandbox." },
+      { "name": "Microsoft-IIS", "versions": ["5.0", "6.0", "7.5", "8.5", "10.0"], "risk": "High", "desc": "RCE via WebDAV e vulnerabilidades no driver HTTP.sys." },
+      { "name": "LiteSpeed", "versions": ["5.4.x", "6.0.x"], "risk": "Medium", "desc": "Exposição de memória em configurações específicas." },
+      { "name": "Cherokee", "versions": ["1.2.101"], "risk": "High", "desc": "RCE via painel administrativo." }
+    ],
+    "cms_frameworks": [
+      { "name": "WordPress", "versions": ["< 6.4.2"], "risk": "Medium", "desc": "Vulnerabilidades em plugins core e POP chains." },
+      { "name": "Joomla", "versions": ["3.4.4", "3.10.1", "4.0.4"], "risk": "High", "desc": "Injeção SQL e RCE no núcleo." },
+      { "name": "Drupal", "versions": ["7.x", "8.x", "9.1"], "risk": "Critical", "desc": "Drupalgeddon (RCE via formulários)." },
+      { "name": "Magento", "versions": ["2.3.x", "2.4.2"], "risk": "Critical", "desc": "RCE via desserialização e injeção de templates." },
+      { "name": "Laravel", "versions": ["v8.4.2"], "risk": "High", "desc": "Debug mode exposto permite execução de código via Ignition." }
+    ],
+    "databases": [
+      { "name": "MySQL", "versions": ["5.1.x", "5.6.x", "5.7.28"], "risk": "High", "desc": "Bypass de autenticação e falhas de buffer overflow." },
+      { "name": "PostgreSQL", "versions": ["9.3", "11.7", "12.1"], "risk": "Medium", "desc": "Execução de comandos arbitrários via funções de cópia." },
+      { "name": "MongoDB", "versions": ["3.6.x", "4.4.x"], "risk": "Critical", "desc": "Instâncias sem autenticação (NoSQL Injection)." },
+      { "name": "Redis", "versions": ["4.x", "5.x", "6.x"], "risk": "Critical", "desc": "Acesso root via escrita de arquivos de configuração (save/dbfilename)." },
+      { "name": "Elasticsearch", "versions": ["1.4.2", "1.7.1"], "risk": "Critical", "desc": "RCE via Groovy scripting (CVE-2015-1427)." },
+      { "name": "CouchDB", "versions": ["1.6.1", "2.1.0"], "risk": "High", "desc": "Erlang RCE (CVE-2017-12636)." }
+    ],
+    "infrastructure_and_cloud": [
+      { "name": "Docker_API", "versions": ["All"], "risk": "Critical", "desc": "API exposta permite escape de container e controle do host." },
+      { "name": "Kubernetes_Dashboard", "versions": ["v1.10.1"], "risk": "Critical", "desc": "Acesso não autorizado com privilégios de admin." },
+      { "name": "Jenkins", "versions": ["2.138.1", "2.150.1"], "risk": "Critical", "desc": "RCE via pipeline e bypass de ACL." },
+      { "name": "Consul", "versions": ["1.2.x"], "risk": "High", "desc": "RCE via Services API." },
+      { "name": "GitLab", "versions": ["13.10.2"], "risk": "Critical", "desc": "RCE via ExifTool (CVE-2021-22205)." }
+    ],
+    "iot_and_network_hardware": [
+      { "name": "MikroTik_RouterOS", "versions": ["6.38.1"], "risk": "High", "desc": "Exploits Chimay-Red e acesso não autorizado." },
+      { "name": "Cisco_IOS", "versions": ["12.x", "15.x"], "risk": "Critical", "desc": "Vulnerabilidades de buffer overflow no stack IKEv1/v2." },
+      { "name": "Ubiquiti_UniFi", "versions": ["6.5.54"], "risk": "High", "desc": "Log4Shell via interface de gerenciamento." },
+      { "name": "Hikvision_DVR", "versions": ["2017_Firmware"], "risk": "Critical", "desc": "Backdoor de superusuário e RCE via cabeçalho HTTP." }
+    ]
+  },
+  "fuzzing_payloads": {
+    "sensitive_files": [
+      "/.env", "/.git/config", "/.bash_history", "/config.php.bak", "/wp-config.php~",
+      "/docker-compose.yml", "/etc/passwd", "/etc/shadow", "/id_rsa", "/backup.sql"
+    ],
+    "admin_paths": [
+      "/admin", "/administrator", "/wp-admin", "/pma", "/phpmyadmin", "/dashboard",
+      "/v1/api", "/console", "/jenkins", "/web-console", "/management"
+    ]
+  },
+  "default_credentials": [
+    { "service": "SSH/Telnet", "creds": ["root:root", "admin:admin", "user:user", "support:support"] },
+    { "service": "Database", "creds": ["sa:password123", "postgres:postgres", "root:password"] },
+    { "service": "Network", "creds": ["ubnt:ubnt", "cisco:cisco", "mikrotik:admin"] }
+  ],
+  "wired_glitch_responses": {
+    "honeypot_detected": "Anomalia de rede detectada. Este fragmento parece ser uma armadilha sintética.",
+    "waf_blocked": "Sinal interrompido. Um sentinela (WAF) bloqueou sua projeção na Wired."
+  }
+}

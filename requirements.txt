@@ -1,0 +1,12 @@
+# WIRED PROTOCOL - Requirements
+# Priorizando bibliotecas nativas e suporte a proxies.
+
+# Essencial para o suporte a conexões Tor/SOCKS
+PySocks==1.7.1
+
+# Recomendado para garantir compatibilidade de cores ANSI no Windows 
+# (Caso você algum dia abra o Navi fora do Linux)
+colorama==0.4.6
+
+# Para requisições HTTP mais complexas no futuro (Opcional, se o Web Incursion crescer)
+requests==2.31.0
